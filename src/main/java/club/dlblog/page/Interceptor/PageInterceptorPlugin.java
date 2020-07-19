@@ -32,6 +32,8 @@ public class PageInterceptorPlugin  implements Interceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(PageInterceptorPlugin.class);
 
+
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         //获取命令handler取得
