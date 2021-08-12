@@ -50,15 +50,27 @@ public class PageInterceptorPlugin  implements Interceptor {
            MetaObject metaObject = MetaObject.forObject(
                    statementHandler, SystemMetaObject.DEFAULT_OBJECT_FACTORY,SystemMetaObject.DEFAULT_OBJECT_WRAPPER_FACTORY,
                    new DefaultReflectorFactory());
+           // 获取statementHandler包装类
+           MetaObject MetaObjectHandler = SystemMetaObject.forObject(statementHandler);
+
+           // 分离代理对象链
+           while (MetaObjectHandler.hasGetter("h")) {
+               Object obj = MetaObjectHandler.getValue("h");
+               MetaObjectHandler = SystemMetaObject.forObject(obj);
+           }
+           while (MetaObjectHandler.hasGetter("target")) {
+               Object obj = MetaObjectHandler.getValue("target");
+               MetaObjectHandler = SystemMetaObject.forObject(obj);
+           }
            //获取当前sqlId
            String sqlId = (String)metaObject.getValue(META_OBJECT_KEY_SQL_ID);
            //原来应该执行的sql吧
            String sql = statementHandler.getBoundSql().getSql();
-           logger.debug("-originSql:" + sql);
+           logger.debug(">> originSql:" + sql);
            Connection connection = (Connection) invocation.getArgs()[0];
 
            String countSql = bulidCountSql(sql);
-           logger.debug("-countSql:" + countSql);
+           logger.debug(">> countSql:" + countSql);
 
            //渲染参数
            PreparedStatement preparedStatement = connection.prepareStatement(countSql);
@@ -78,9 +90,9 @@ public class PageInterceptorPlugin  implements Interceptor {
 
            //拼接分页语句(limit) 并且修改mysql本该执行的语句
            String pageSql = buildPageSql(pageBean, sql);
-           logger.debug("-pageSql:" + pageSql);
+           logger.debug(">> pageSql:" + pageSql);
            //重新绑定分页sql
-           metaObject.setValue(META_OBJECT_KEY_BOUND_SQL, pageSql);
+           MetaObjectHandler.setValue(META_OBJECT_KEY_BOUND_SQL, pageSql);
        }
         //推进拦截器调用链
         return invocation.proceed();

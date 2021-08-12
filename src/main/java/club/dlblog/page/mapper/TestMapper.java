@@ -1,0 +1,1 @@
+package club.dlblog.page.mapper;import club.dlblog.page.bean.PageWrapperBean;import org.apache.ibatis.annotations.Param;import java.util.List;public interface TestMapper {    List<TestEntity> select( TestEntity testEntity);    List<TestEntity> query(@Param("page")PageWrapperBean pageWrapperBean);}

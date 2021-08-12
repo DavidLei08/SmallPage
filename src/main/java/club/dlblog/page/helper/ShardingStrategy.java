@@ -1,0 +1,1 @@
+package club.dlblog.page.helper;public interface ShardingStrategy<T> {    String doSharding(String table,T sign);}

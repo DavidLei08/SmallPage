@@ -4,7 +4,11 @@ public class  PageWrapperBean {
 
     PageBean page = new PageBean();
 
-      public PageBean getPage(){
+    public PageWrapperBean(PageBean page) {
+        this.page = page;
+    }
+
+    public PageBean getPage(){
         return this.page;
     }
 

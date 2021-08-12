@@ -1,0 +1,1 @@
+package club.dlblog.page.helper;import club.dlblog.page.Interceptor.ShardingInterceptorPlugin;public class ShardingHelper {    public static void setSign(Object o){        ShardingInterceptorPlugin.setCurrentSign(o);    }}

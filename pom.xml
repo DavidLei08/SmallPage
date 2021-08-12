@@ -9,10 +9,10 @@
 		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
 	</parent>-->
 	<groupId>club.dlblog.page</groupId>
-	<artifactId>SmallPage</artifactId>
+	<artifactId>small-page</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SmallPage</name>
-	<description>Small Page</description>
+	<name>small-page</name>
+	<description>small-page</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -45,6 +45,19 @@
 			</exclusions>
 		</dependency>-->
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/repository/spring-plugin/</url>
+		</repository>
+		<snapshotRepository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/repository/spring-plugin/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>

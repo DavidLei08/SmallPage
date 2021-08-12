@@ -28,7 +28,7 @@ public class PageBean {
     /**
      * 总页数
      */
-    private Integer PageCount;
+    private Integer pageCount;
 
     public Integer getTotal() {
         return total;
@@ -67,11 +67,11 @@ public class PageBean {
     }
 
     public Integer getPageCount() {
-        return PageCount;
+        return pageCount;
     }
 
     public void setPageCount(Integer pageCount) {
-        PageCount = pageCount;
+        pageCount = pageCount;
     }
 
     public PageBean(Integer limit, Integer currentPage) {
@@ -89,7 +89,7 @@ public class PageBean {
      */
     public void autoCount(){
         if(limit!=null&&limit>0&&total!=null){
-            PageCount = total/limit+1;
+            pageCount = total/limit+1;
         }
         if(limit!=null&&limit>0&&currentPage>=1) {
             start = (currentPage - 1) * limit;
