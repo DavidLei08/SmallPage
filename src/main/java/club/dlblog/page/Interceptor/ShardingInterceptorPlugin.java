@@ -24,7 +24,7 @@ import java.util.Set;
 @Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class}))
 public class ShardingInterceptorPlugin implements Interceptor {
 
-    private static final Logger logger = LoggerFactory.getLogger(PageInterceptorPlugin.class);
+    private static final Logger logger = LoggerFactory.getLogger(ShardingInterceptorPlugin.class);
 
     private static final String META_OBJECT_KEY_BOUND_SQL = "delegate.boundSql.sql";
 
